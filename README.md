@@ -1,5 +1,5 @@
-<H3>ENTER YOUR NAME</H3>
-<H3>ENTER YOUR REGISTER NO.</H3>
+<H3>ENTER YOUR NAME : NITHISHKUMAR S</H3>
+<H3>ENTER YOUR REGISTER NO. 212223240109</H3>
 <H3>EX. NO.1</H3>
 <H3>DATE</H3>
 <H1 ALIGN =CENTER> Introduction to Kaggle and Data preprocessing</H1>
@@ -37,11 +37,83 @@ STEP 5:Normalizing the data<BR>
 STEP 6:Splitting the data into test and train<BR>
 
 ##  PROGRAM:
-TYPE YOUR CODE HERE
+```
+#importing libraries
+import pandas as pd
+import io
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+
+#Reading the dataset
+df=pd.read_csv("/content/Churn_Modelling.csv", index_col="RowNumber")
+df
+
+#Dropping the unwanted Columns
+df.drop(['CustomerId'],axis=1,inplace=True)
+df.drop(['Surname'],axis=1,inplace=True)
+df.drop('Age',axis=1,inplace=True)
+df.drop('Geography',axis=1,inplace=True)
+df.drop('Gender',axis=1,inplace=True)
+df
+
+#Checking for null values
+df.isnull().sum()
+
+#Checking for duplicate values
+df.duplicated()
+
+#Describing the dataset
+df.describe()
+
+#Scaling the dataset
+scaler=StandardScaler()
+df1=pd.DataFrame(scaler.fit_transform(df))
+df1
+
+#Allocating X and Y attributes
+x=df1.iloc[:,:-1].values
+x
+y=df1.iloc[:,-1].values
+y
+
+#Splitting the data into training and testing dataset
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2)
+print(x_train)
+print(len(x_train))
+print(x_test)
+print(len(x_test))
+```
+
 
 
 ## OUTPUT:
-SHOW YOUR OUTPUT HERE
+
+### DATASET:
+![image](https://github.com/user-attachments/assets/9c68a06a-480b-41af-b019-69125b74ed4d)
+
+### DROPPING THE UNWANTED DATA:
+![image](https://github.com/user-attachments/assets/a5cf4eff-a7d9-4323-a3db-3c78bcbe02c0)
+
+### CHECKING THE NULL VALUES:
+![image](https://github.com/user-attachments/assets/3c3e69c8-491d-4cf1-975a-bd80b97cff7e)
+
+### CHECKING FOR DUPLICATION:
+![image](https://github.com/user-attachments/assets/4aa2c1d2-7f46-4add-b349-183cd9088224)
+
+### DESCRIBE THE DATASET:
+![image](https://github.com/user-attachments/assets/32afcbba-8250-4908-9b6f-f0eb18e164ab)
+
+### SCALING THE DATASET:
+![image](https://github.com/user-attachments/assets/83f625d6-cf73-4043-9261-02243db8c606)
+
+### X FEATURES:
+![image](https://github.com/user-attachments/assets/d6dd64e7-ca76-40fc-a54f-6468b3d03665)
+
+### Y FEATURES:
+![image](https://github.com/user-attachments/assets/5423fa83-510b-44ee-9c8a-37264dd07321)
+
+### SPLITTING THE TRAINING AND TESTING DATASET:
+![Screenshot 2024-08-28 141420](https://github.com/user-attachments/assets/f71da99b-0486-494f-af31-649e34212b77)
 
 
 ## RESULT:
